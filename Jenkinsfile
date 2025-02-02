@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         SOURCE_PATH = 'C:/Users/user/Downloads/testfolder.zip'  // Windows path (ensure it exists)
-        DESTINATION_PATH = '/home/ec2-user/zip' 
-        REMOTE_SERVER = 'ec2-user@172.31.14.176'
+        DESTINATION_PATH = '/home/ubuntu/scp' 
+        REMOTE_SERVER = 'ubuntu@172.31.11.241'
     }
 
     stages{
