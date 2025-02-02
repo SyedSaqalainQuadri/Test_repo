@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Transferring ZIP file to remote server using SCP...'
-                    sh "scp -o StrictHostKeyChecking=no -i C:/Users/user/Downloads/uzair-devops.pem C:/Users/user/Downloads/testfolder.zip ubuntu@172.31.11.241:/home/ubuntu/scp/"
+                    sh "scp -o StrictHostKeyChecking=no -i /c/Users/user/Downloads/uzair-devops.pem /c/Users/user/Downloads/testfolder.zip ubuntu@172.31.11.241:/home/ubuntu/scp/"
                 }
             }
         }
