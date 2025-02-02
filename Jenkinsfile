@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Transferring ZIP file to remote server using SCP...'
-                    sh "scp '${env.SOURCE_PATH}' ${env.REMOTE_SERVER}:${env.DESTINATION_PATH}/"
+                    sh "scp -o StrictHostKeyChecking=no -i '${env.SOURCE_PATH}' ${env.REMOTE_SERVER}:${env.DESTINATION_PATH}/"
                 }
             }
         }
