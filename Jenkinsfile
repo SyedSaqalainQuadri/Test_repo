@@ -2,29 +2,44 @@ pipeline {
     agent any
 
     environment {
-        SOURCE_PATH = 'C:/Users/user/Downloads/testfolder.zip'  // Windows path (ensure it exists)
-        DESTINATION_PATH = '/home/ubuntu/scp' 
-        REMOTE_SERVER = 'ubuntu@172.31.11.241'
+        REMOTE_USER = "ubuntu"                 // Remote Jenkins server username
+        REMOTE_HOST = "172.31.11.241"       // Remote Jenkins server IP/Hostname
+        REMOTE_DIR = "/home/ubuntu/scp" // Directory on the remote Jenkins server
+        LOCAL_ZIP_FILE = "testfolder.zip"         // Name of the ZIP file to transfer
     }
 
-    stages{
-        stage('Transfer to Remote Server') {
+    stages {
+        stage('Upload ZIP File to Remote Jenkins') {
             steps {
                 script {
-                    echo 'Transferring ZIP file to remote server using SCP...'
-                    sh "scp -o StrictHostKeyChecking=no '${env.SOURCE_PATH}' ${env.REMOTE_SERVER}:${env.DESTINATION_PATH}/"
+                    sh """
+                        scp -i C:/Users/user/Downloads/uzair-devops.pem ${WORKSPACE}/${LOCAL_ZIP_FILE} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_DIR}
+                    """
+                    echo "File transferred successfully to remote Jenkins server!"
                 }
             }
         }
-    }      
+
+        stage('Verify Transfer on Remote Jenkins') {
+            steps {
+                script {
+                    sh """
+                        ssh -i  C:/Users/user/Downloads/uzair-devops.pem ${REMOTE_USER}@${REMOTE_HOST} "ls -l ${REMOTE_DIR}/${LOCAL_ZIP_FILE}"
+                    """
+                    echo "Verification complete!"
+                }
+            }
+        }
+    }
 
     post {
         success {
-            echo 'File copy successful'
+            echo "Pipeline completed successfully!"
         }
         failure {
-            echo 'File copy failed'
+            echo "Pipeline failed! Check logs for errors."
         }
     }
 }
+
 
