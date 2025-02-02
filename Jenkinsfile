@@ -5,7 +5,7 @@ pipeline {
         REMOTE_USER = "ubuntu"                 // Remote Jenkins server username
         REMOTE_HOST = "172.31.11.241"       // Remote Jenkins server IP/Hostname
         REMOTE_DIR = "/home/ubuntu/scp" // Directory on the remote Jenkins server
-        LOCAL_ZIP_FILE = "testfolder.zip"         // Name of the ZIP file to transfer
+        LOCAL_ZIP_FILE = "C:/Users/user/Downloads/testfolder.zip"         // Name of the ZIP file to transfer
     }
 
     stages {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        scp -i C:/Users/user/Downloads/uzair-devops.pem ${WORKSPACE}/${LOCAL_ZIP_FILE} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_DIR}
+                        scp -i C:/Users/user/Downloads/uzair-devops.pem ${LOCAL_ZIP_FILE} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_DIR}
                     """
                     echo "File transferred successfully to remote Jenkins server!"
                 }
