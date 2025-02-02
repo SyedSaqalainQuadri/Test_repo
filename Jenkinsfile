@@ -7,6 +7,7 @@ pipeline {
         REMOTE_SERVER = 'ec2-user@172.31.14.176'
     }
 
+    stages{
         stage('Transfer to Remote Server') {
             steps {
                 script {
@@ -15,6 +16,7 @@ pipeline {
                 }
             }
         }
+    }      
 
     post {
         success {
