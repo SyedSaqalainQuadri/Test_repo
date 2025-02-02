@@ -24,6 +24,7 @@ pipeline {
                 }
             }
         }
+    }
 
         post {
             success {
@@ -33,5 +34,4 @@ pipeline {
                     echo 'file copy failed'
             }
         }
-    }
 }
