@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SOURCE_PATH = 'C:\Users\user\Downloads\testfolder.zip'  // Source directory on the local system
+        SOURCE_PATH = 'C:/Users/user/Downloads/testfolder.zip'  // Source directory on the local system
         DESTINATION_PATH = '/home/ec2-user/zip' // Destination directory on target server
         REMOTE_SERVER = 'ec2-user@172.31.14.176' // Corrected by removing the trailing space
     }
